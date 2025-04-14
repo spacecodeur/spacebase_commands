@@ -29,6 +29,4 @@ RUN groupadd -g 1000 appuser && \
 WORKDIR /app
 RUN chown -R appuser:appuser /app
 
-COPY --chown=appuser:appuser . .
-
 USER appuser
