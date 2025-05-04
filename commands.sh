@@ -69,8 +69,14 @@ else
     fi
 
     if [[ "$COMMAND" == fc/* ]] && ! is_running_in_docker; then
-        # keep --tty and --interactive : if not, SIGINT (ctrl+c) won't be correctly pass from host to container
-        docker exec --tty --interactive --workdir /app ${APP_NAME}-app-container ./commands.sh $COMMAND "${@:2}"
+        
+        SERVICE=$(echo "$COMMAND" | cut -d '/' -f 2)
+
+        CONTAINER_NAME="${APP_NAME}-${SERVICE}-container"
+
+        # keep --tty and --interactive : if not, SIGINT (ctrl+c) won't be correctly passed from host to container
+        docker exec --tty --interactive --workdir /app "$CONTAINER_NAME" ./commands.sh "$COMMAND" "${@:2}"
+
     else
         # execute the command with parameters starting from the second argument
         bash "$COMMAND_FILE" "${@:2}"

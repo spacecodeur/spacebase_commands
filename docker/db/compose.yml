@@ -1,6 +1,6 @@
 services:
   postgres:
-    container_name: postgres
+    container_name: db
     image: postgres:latest
     environment:
       - POSTGRES_USER=${POSTGRES_USER}

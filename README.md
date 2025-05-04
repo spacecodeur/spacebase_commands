@@ -55,8 +55,9 @@ This project is designed for Unix-based systems. Some scripts may not work on Wi
 All commands are executed from the host machine using `./commands.sh`. However, commands inside `commands/fc` (fc = "from container") are executed from inside a container. The `commands.sh` script automatically ensures that:
 
 - Regular commands are executed on the host.
-- Commands inside `commands/fc` are executed within the **app** container (currently, the script does not support other containers).
-- If you run `./commands.sh fc/...` from the host, it will be redirected inside the container.
+- Commands inside `commands/fc/<service>/...` are executed within the corresponding container named `${APP_NAME}-<service>-container`.
+- For example, `./commands.sh fc/app/tests/unit.sh` will run inside the `${APP_NAME}-app-container`, while `./commands.sh fc/db/clear-all.sh` will run inside the `${APP_NAME}-db-container`.
+- If you run `./commands.sh fc/...` from the host, it will be redirected and executed inside the appropriate container.
 
 ## Autocompletion
 
