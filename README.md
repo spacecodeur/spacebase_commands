@@ -1,8 +1,8 @@
-# Spacecommands
+# spacebase_commands
 
 ## Overview
 
-**Spacecommands** is a lightweight CLI framework that provides common utility commands and a base Docker setup for any project. It requires no external dependencies (except Docker, which is optional). 
+**spacebase_commands** is a lightweight CLI framework that provides common utility commands and a base Docker setup for any project. It requires no external dependencies (except Docker, which is optional). 
 
 This project is designed for Unix-based systems. Some scripts may not work on Windows without modifications.
 
@@ -13,7 +13,7 @@ This project is designed for Unix-based systems. Some scripts may not work on Wi
 - Automatic execution of commands inside the appropriate container
 - Autocompletion support with `source ./commands`
 
-## Directory Structure (Simplified)
+## Directory structure (simplified)
 
 ```
 .
@@ -50,7 +50,7 @@ This project is designed for Unix-based systems. Some scripts may not work on Wi
 ├── README.md
 ```
 
-## Running Commands
+## Running commands
 
 All commands are executed from the host machine using `./commands.sh`. However, commands inside `commands/fc` (fc = "from container") are executed from inside a container. The `commands.sh` script automatically ensures that:
 
@@ -68,30 +68,30 @@ source ./commands
 
 Now, pressing `[Tab]` after `./commands.sh` will suggest available commands.
 
-## How to Integrate Spacecommands into Your Project
+## How to integrate `spacebase_commands` into your project
 
-If you want to bring **Spacecommands** into your existing project **without overwriting your .git or existing files**, follow these steps:
+If you want to bring **spacebase_commands** into your existing project **without overwriting your .git or existing files**, follow these steps:
 
-### 1. Add Spacecommands as a remote
+### 1. Add `spacebase_commands` as a remote
 
 ```sh
-git remote add spacecommands git@github.com:spacecodeur/spacecommands.git
+git remote add spacebase_commands git@github.com:spacecodeur/spacebase_commands.git
 ```
 
-### 2. Fetch the latest Spacecommands changes
+### 2. Fetch the latest `spacebase_commands` changes
 
 ```sh
-git fetch spacecommands
+git fetch spacebase_commands
 ```
 
-### 3. Merge Spacecommands into your project (while keeping your files safe)
+### 3. Merge `spacebase_commands` into your project (while keeping your files safe)
 
 ```sh
-git merge --allow-unrelated-histories spacecommands/main -X ours
+git merge --allow-unrelated-histories spacebase_commands/main -X ours
 ```
 
 This will:
-- **Add new files from Spacecommands** without overwriting existing files in your project.
+- **Add new files from spacebase_commands** without overwriting existing files in your project.
 - **Preserve your own files and modifications**.
 - **Allow you to review changes** before committing.
 
@@ -104,7 +104,7 @@ Finally, set the name of your project in the key `APP_NAME` (`.env` file)
 Once resolved, finalize the integration:
 
 ```sh
-git commit -am "Merged Spacecommands into project"
+git commit -am "Merged spacebase_commands into project"
 ```
 
-Now, **Spacecommands** is integrated into your project while keeping your Git history intact!
+Now, **spacebase_commands** is integrated into your project while keeping your Git history intact!
