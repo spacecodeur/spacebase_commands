@@ -11,63 +11,14 @@ This project is designed for Unix-based systems. Some scripts may not work on Wi
 - Easy-to-use CLI for common operations
 - Predefined Docker commands for managing containers
 - Automatic execution of commands inside the appropriate container
-- Autocompletion support with `source ./commands`
-
-## Directory structure (simplified)
-
-```
-.
-├── commands
-│   ├── app
-│   │   ├── container
-│   │   │   ├── build.sh
-│   │   │   ├── logs-tail.sh
-│   │   │   ├── ...
-│   ├── docker
-│   │   ├── clean.sh
-│   │   ├── ls.sh
-│   │   ├── ...
-│   ├── fc
-│   │   ├── app
-│   │   │   ├── migrate
-│   │   │   │   ├── generate-migrate.sh
-│   │   │   │   ├── up-all.sh
-│   │   │   │   ├── ...
-│   │   │   ├── tests
-│   │   │   │   ├── e2e.sh
-│   │   │   │   ├── unit.sh
-│   │   │   │   ├── ...
-│   │   │   ├── ...
-├── commands.sh
-├── docker
-│   ├── app
-│   │   ├── compose.yml
-│   │   ├── Dockerfile
-│   │   ├── ...
-│   ├── db
-│   │   ├── compose.yml
-│   │   ├── ...
-├── README.md
-```
 
 ## Running commands
 
-All commands are executed from the host machine using `./commands.sh`. However, commands inside `commands/fc` (fc = "from container") are executed from inside a container. The `commands.sh` script automatically ensures that:
+The `commands.sh` script automatically ensures that:
 
-- Regular commands are executed on the host.
-- Commands inside `commands/fc/<service>/...` are executed within the corresponding container named `${APP_NAME}-<service>-container`.
-- For example, `./commands.sh fc/app/tests/unit.sh` will run inside the `${APP_NAME}-app-container`, while `./commands.sh fc/db/clear-all.sh` will run inside the `${APP_NAME}-db-container`.
-- If you run `./commands.sh fc/...` from the host, it will be redirected and executed inside the appropriate container.
-
-## Autocompletion
-
-To enable autocompletion when using `./commands.sh`, run:
-
-```sh
-source ./commands
-```
-
-Now, pressing `[Tab]` after `./commands.sh` will suggest available commands.
+- Commands are executed on the host.
+- But not inside `./commands/services/<service-name>/in-container/...`, commands are executed within the corresponding container named `${APP_NAME}-<service_name>-container`. If you run theses types of commands from the host, they it will be automatically executed inside the appropriate container.
+- For example, `./commands.sh commands/services/app/in-container/tests/unit.sh` will run inside the `${APP_NAME}-app-container`, while (by example) `./commands.sh commands/services/db/in-container/clear-all.sh` will run inside the `${APP_NAME}-db-container`.
 
 ## How to integrate `spacebase_commands` into your project
 

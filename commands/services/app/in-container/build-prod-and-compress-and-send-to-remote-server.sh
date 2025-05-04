@@ -39,7 +39,7 @@ fi
 
 # Compile and create the archive
 [ -f release.tar.gz ] && rm release.tar.gz && \
-./commands.sh fc/app/build-prod-and-compress
+./commands.sh commands/services/app/in-container/build-prod-and-compress.sh
 
 # copy the archive to the remote server
 if [[ -n "$KEY_PATH" ]]; then
